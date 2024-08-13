@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World!</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+      .main {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      webview {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      </style>
+      <script>
+        onload = () => {
+          const webview = document.querySelector('webview')
+          const indicator = document.querySelector('.indicator')
+      
+          const loadstart = () => {
+            indicator.innerText = 'loading...'
+          }
+      
+          const loadstop = () => {
+            indicator.innerText = ''
+          }
+      
+          webview.addEventListener('did-start-loading', loadstart)
+          webview.addEventListener('did-stop-loading', loadstop)
+        }
+      </script>
+  </head>
+  <body>
+    <div class="main">
+      <webview id="foo" src="https://ai.block8910.com/admin/kitchen/13" style="display:inline-flex; width:640px; height:480px"></webview>
+      <webview src="https://www.github.com/"></webview>
+    </div>
+      </body>
+</html>

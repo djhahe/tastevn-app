@@ -16,6 +16,7 @@ const createWindow = async () => {
     webPreferences: {
       webSecurity: false,
     },
+    autoHideMenuBar: true,
   });
 
   // get the page from local storage

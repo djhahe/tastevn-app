@@ -5,6 +5,7 @@ import path from "path";
 if (require("electron-squirrel-startup")) {
   app.quit();
 }
+app.commandLine.appendSwitch("autoplay-policy", "no-user-gesture-required");
 
 const createWindow = async () => {
   const win = new BrowserWindow({
@@ -12,7 +13,11 @@ const createWindow = async () => {
     height: 600,
     show: false,
     fullscreen: true,
+    webPreferences: {
+      webSecurity: false,
+    },
   });
+
   // get the page from local storage
   win.webContents
     .executeJavaScript('localStorage.getItem("page")', true)

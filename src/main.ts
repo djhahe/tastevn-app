@@ -14,34 +14,35 @@ const createWindow = async () => {
     show: false,
     fullscreen: true,
     webPreferences: {
-      webSecurity: false,
+      preload: path.join(__dirname, "preload.js"),
+      contextIsolation: false,
     },
     autoHideMenuBar: true,
   });
-
+  win.loadFile("index.html");
   // get the page from local storage
-  win.webContents
-    .executeJavaScript('localStorage.getItem("page")', true)
-    .then((value) => {
-      if (value) {
-        win.loadURL(value);
-      }
-    });
-  win.loadURL("https://ai.block8910.com");
+  // win.webContents
+  //   .executeJavaScript('localStorage.getItem("page")', true)
+  //   .then((value) => {
+  //     if (value) {
+  //       win.loadURL(value);
+  //     }
+  //   });
+  // win.loadURL("https://ai.block8910.com");
 
-  win.once("ready-to-show", () => {
-    win.show();
-  });
+  // win.once("ready-to-show", () => {
+  //   win.show();
+  // });
 
   // listen for changes in the URL
-  win.webContents.on("will-navigate", (event, newPage) => {
-    // store the new page in a variable
-    const page = newPage;
-    // store to local storage
-    win.webContents.executeJavaScript(
-      `localStorage.setItem('page', '${page}')`
-    );
-  });
+  // win.webContents.on("will-navigate", (event, newPage) => {
+  //   // store the new page in a variable
+  //   const page = newPage;
+  //   // store to local storage
+  //   win.webContents.executeJavaScript(
+  //     `localStorage.setItem('page', '${page}')`
+  //   );
+  // });
 
   // win.webContents.openDevTools();
   // and load the index.html of the app.
